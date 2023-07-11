@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>@CSS_magix</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:600,700,900" rel="stylesheet">
+</head>
+<body id="body" style="background-color: #5d8fc9;">
+<div id="login-card" class="card" style="width:350px; border-radius: 25px; margin:20px auto; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); background-color: #ffffff;">
+  <div class="card-body">
+    <h2 class="text-center" style="color: #000;">Increase Views</h2>
+    <h2 class="text-center" style="font-size: 13px; color: grey;">read suggestions if you have any query</h2>
+<!--     <h2 class="text-center" style="font-size: 15px; color: grey;">Subscribe to run the website</h2> -->
+    <h2 class="text-center" style="font-size: 13px; color: grey;">updated on 11th July 2023</h2>
+    <br>
+    <div class="form-group">
+      <input class="form-control" id="urlvideo" placeholder="Paste video link" value="" style="background-color: #ebf0fc; border-color: #ebf0fc; color: #9da3b0; border-radius: 10px;">
+    </div>
+    <div class="form-group">
+      <input class="form-control" id="nbrvideo" placeholder="No. of views" value="" style="background-color: #ebf0fc; border-color: #ebf0fc; color: #9da3b0; border-radius: 10px;">
+    </div>
+<!--     <div class="form-group form-check" style="margin-left: 10px;">
+      <input type="checkbox" class="form-check-input" id="autoplayCheckbox" onchange="toggleAutoplay()" style="height: 15px;">
+      <label class="form-check-label" for="autoplayCheckbox">Autoplay & Mute</label>
+    </div>
+    <div class="form-group form-check" style="margin-left: 10px;">
+      <input type="checkbox" class="form-check-input" id="muteCheckbox" onchange="toggleMute()">
+      <label class="form-check-label" for="muteCheckbox">Mute</label>
+    </div> -->
+    <button onclick="play();" id="button_play" class="btn btn-primary deep-purple btn-block" style="border-radius: 30px;">Play</button>
+<!--     <button onclick="enableButton();" id="button_sub" class="btn btn-primary deep-purple btn-block" style="background-color:#c4302b; border-color: #c4302b; border-radius: 30px;">Subscribe</button> -->
+    <button onclick="enableButton(); removeButton(this);" id="button_sub" class="btn btn-primary deep-purple btn-block" style="background-color:#c4302b; border-color: #c4302b; border-radius: 30px;">Subscribe</button>
+    <br>
+    <br>
+    <div id="btn" class="text-center" style="position: absolute;bottom: -35px;padding: 5px;margin: 0px 55px;align-items: center;border-radius: 5px;">
+      <button type="button" class="btn btn-danger btn-circle btn-sm" onclick="window.open('https://www.youtube.com/@cssmagix','_blank')" style="width: 40px; height: 40px; padding: 2px 0px; border-radius: 25px; font-size: 20px; text-align: center; margin: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);"><i class="fa fa-youtube"></i></button>
+      <button type="button" class="btn btn-info btn-circle btn-sm" onclick="window.open('https://instagram.com/cadenttax99','_blank')" style="width: 40px; height: 40px; padding: 2px 0px; border-radius: 25px; font-size: 20px; text-align: center; margin: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);"><i class="fa fa-instagram"></i></button>
+      <button type="button" class="btn btn-primary btn-circle btn-sm" onclick="window.open('https://t.me/css_magix','_blank')" style="width: 40px; height: 40px; padding: 2px 0px; border-radius: 25px; font-size: 20px; text-align: center; margin: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);"><i class="fa fa-telegram"></i></button>
+    </div>
+  </div>
+</div>
+
+<div id="player" style="margin: 1%; padding: 5%;">
+  <h2 class="text-center" id="outputString" style="font-size: 15px;"></h2>
+  <br>
+  <!-- <h2 class="text-center" id="request" style="font-size: 25px; align-content: center; color: #000;"><a href="https://www.youtube.com/@cssmagix" target="_blank">*Subscribe to run the website*</a></h2> -->
+  <h2 class="text-center" style="font-size: 20px; color: black; font-weight:bold;">Suggestions</h2>
+  <h2 class="text-left" style="font-size: 14px; color: black;">1. Watch video by skipping i.e. move video slider (It will make sure that you are actually watching).</h2>
+  <h2 class="text-left" style="font-size: 14px; color: black;">2. Don't just play video and leave.</</h2>
+  <h2 class="text-left" style="font-size: 14px; color: black;">3. Paste VIDEO link (Shorts link also works but it is not that efficient).</h2>
+  <script>
+    var dt = new Date().toDateString();
+    var input = new Date().toDateString();
+    var encryptedString = btoa(input);
+    if (1 == 1){
+      // remove subscribe button
+      function removeButton(button) {
+        button.parentNode.removeChild(button);
+      }
+      // enable play button
+      function enableButton() {
+        window.open("https://www.youtube.com/@cssmagix", "_blank");
+        var button = document.getElementById('button_play');
+        button.disabled = false;
+      }
+
+      var isAutoplayEnabled = false;
+      var isMuted = false;
+      // check if autoplay checkbox
+      function toggleAutoplay() {
+        isAutoplayEnabled = !isAutoplayEnabled;
+      }
+      // check if mute checkbox
+      function toggleMute() {
+        isMuted = !isMuted;
+      }
+      // iframe size
+      function play() {
+        urlvid = document.getElementById("urlvideo").value;
+        if(urlvid.includes("shorts")){
+          w = "90px";
+          h = "160px";
+        }
+        else {
+          w = "140px";//160px
+          h = "79px";//90px 
+        }
+
+        // url formation
+        urlvid = urlvid.replace("www.","");
+        urlvid = urlvid.replace("https://youtube.com/shorts/","https://www.youtube.com/embed/");
+        urlvid = urlvid.replace("https://youtube.com/v/","https://www.youtube.com/embed/");
+        urlvid = urlvid.replace("https://youtube.com/watch?v=","https://www.youtube.com/embed/");
+        urlvid = urlvid.replace("https://youtu.be/","https://www.youtube.com/embed/");
+
+        if (1==2) {
+          if (!urlvid.includes("?")) {
+            urlvid = urlvid + "?";
+          }
+          yes = (isAutoplayEnabled ? 1 : 0)+"";
+          if (yes.includes("1")) {
+            urlvid = urlvid + "?&autoplay=1&mute=1";
+          }else{
+            urlvid = urlvid + "?&autoplay=" + (isAutoplayEnabled ? 1 : 0) + "&mute=" + (isMuted ? 1 : 0);
+          }
+        }
+
+        
+        var n = document.getElementById("nbrvideo").value;
+        
+        // setting position of my video        
+        var myPositions = [3, 4];
+        if (myPositions.includes(n)) {var randomPosition = n;}
+        else if(n>4){var positionIndex = Math.floor(Math.random() * myPositions.length);var randomPosition = myPositions[positionIndex];}
+        else {var randomPosition = 3;}
+
+        // embeding yt video in iframe 
+        if (urlvid != ""){
+          for(var i=1;i<=n;i++){
+            var iframe = document.createElement('iframe');
+            // var myVideos = ["https://www.youtube.com/embed/15NuVvXTxTc","https://www.youtube.com/embed/SKuzoKEnhaE"];
+            var myVideos = ["https://www.youtube.com/embed/SKuzoKEnhaE"];
+            var videoIndex = Math.floor(Math.random() * myVideos.length);
+            var randomVideo = myVideos[videoIndex];
+            if (i%randomPosition ==0){
+              iframe.src = randomVideo;
+            }
+            else {
+              iframe.src = urlvid;
+            }
+            iframe.style.width = w;
+            iframe.style.height = h;
+            document.getElementById('player').appendChild(iframe);
+          }
+        }
+      }
+    }
+    else{
+      document.getElementById("outputString").textContent = "Website temporarily unavailable. To get excess to website message me on telegram @cadenttax99";
+    }
+  </script>
+</div>
+</body>
+<style>
+#player iframe{
+  border-radius: 10px;
+  margin:0px 5px;
+}
+input.form-check-input{
+  width: 15px;
+  height: 15px;
+}
+</style>
+</html>
